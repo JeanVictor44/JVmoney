@@ -10,8 +10,8 @@ export const Sidebar = () => {
                 <ul>
                     <li><img src={dashboardrImg} /> Dashboard</li>
                     <li><img src={settingsImg} /> Transação</li>
-                    <li><img src={settingsImg} /> Criptomoedas</li>
-                    <li><img src={converterImg} /> Conversor</li>
+                    <li><img src={settingsImg} /> Cartão de crédito</li>
+                    <li><img src={converterImg} />Aposentadoria</li>
                     <li><img src={settingsImg} /> Configurações</li>
                 </ul>
             </Nav>

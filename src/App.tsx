@@ -2,7 +2,7 @@ import { GlobalStyle } from "./styles/global"
 import { Header } from "./components/Header";
 import { Grid } from "./components/Grid/style";
 import { Sidebar } from "./components/Sidebar";
-import { Dashboard } from "./components/Transactions";
+import { Transactions } from "./components/Transactions";
 
 export function App() {
   return (
@@ -11,7 +11,7 @@ export function App() {
       <Grid>
         <Sidebar />
         <Header />
-        <Dashboard />
+        <Transactions />
       </Grid>
     </>
   )

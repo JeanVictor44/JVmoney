@@ -6,6 +6,13 @@ export const Container = styled.aside `
 `
 export const Nav = styled.nav `
     padding:4rem 1rem;
+    a {
+        text-decoration:none;
+        display:block;
+    }
+    a + a {
+        margin-top:2rem;
+    }
     li {
         color:#FFF;
         padding:1rem;
@@ -22,8 +29,5 @@ export const Nav = styled.nav `
         img {
             width:1.5rem;
         }
-    }
-    li + li {
-        margin-top:2rem;
     }
 `

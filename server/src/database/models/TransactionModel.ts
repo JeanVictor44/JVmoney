@@ -20,6 +20,10 @@ export const TransactionModel = db.define('transactions', {
     type: DataTypes.STRING,
     allowNull:false
   },
+  isOutput: {
+    type:DataTypes.BOOLEAN,
+    allowNull:false
+  },
   date: {
     type: DataTypes.DATE,
     allowNull:false

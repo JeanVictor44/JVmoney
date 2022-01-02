@@ -1,12 +1,19 @@
-import { useEffect } from "react"
+import { useEffect, useState, useContext} from "react"
+import { TransactionsContext } from "../../context/Transactions"
 import { Container } from "./style"
 
+type Transaction = {
+  id: number,
+  title: string,
+  value: number,
+  category: string,
+  isOutput:boolean
+  date: string
+}
+
 export const TransactionsTable = () => {
-    useEffect(() => {
-        fetch('http://localhost:3000/api/transactions')
-            .then(result => result.json())
-            .then(transactons => console.log(transactons))
-    }, [])
+    const { transactions } = useContext(TransactionsContext)
+
     return (
         <Container>
             <table>
@@ -19,18 +26,48 @@ export const TransactionsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td> Desenvolvimento de website</td>
-                        <td className="deposit">$1200,00</td>
-                        <td>Desenvolvimento</td>
-                        <td>20/02/2022</td>
-                    </tr>
-                    <tr>
-                        <td>Aluguel</td>
-                        <td className="withdraw">$750,00</td>
-                        <td>Casa</td>
-                        <td>20/02/2022</td>
-                    </tr>
+                    
+                    {
+                      transactions.length > 0 ?
+                      transactions.map((transaction) => {
+                        /* Format date */
+                        const date = new Date(transaction.date)
+                        const day = (date.getDate().toString().padStart(2, '0')) 
+                        const month = (date.getMonth() + 1).toString().padStart(2, '0')
+                        const fullDate = `${day}/${month}/${date.getFullYear()}`
+                        
+                        /* Format category: Capitalize */
+                        const categoryFormated = transaction.category.split(' ').map((word) => {
+                          return `${word[0].toLocaleUpperCase()}${word.slice(1)}`
+                        }).join(' ')
+
+                        return ( 
+                          <tr> 
+                            <td>
+                              {transaction.title}
+                            </td>
+                            
+                            <td className={transaction.isOutput ? 'withdraw' : 'deposit'}>
+                              {transaction.value}
+                            </td>
+                            
+                            <td>
+                              {
+                                categoryFormated
+                              }
+                            </td>
+                            
+                            <td>
+                              {
+                               fullDate
+                              }
+                            </td>
+                          </tr>
+  
+                        )}) : null
+                        
+                      }
+                        
                 </tbody>
 
             </table>

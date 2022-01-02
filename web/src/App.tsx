@@ -4,6 +4,7 @@ import { Grid } from "./components/Grid/style";
 import { Sidebar } from "./components/Sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes } from "./routes";
+import { GlobalContext } from "./context";
 
 export function App() {
   
@@ -11,11 +12,12 @@ export function App() {
     <>
       <GlobalStyle />
       <Grid>  
-        {/* Agora vamos construir as rotaaaas  */}
-        {/* Enovlva o componente com os links no router para que ele identifique os links para as rotas */}
+        
         <Router>
           <Sidebar />
-          <Routes />
+          <GlobalContext>
+            <Routes />
+          </GlobalContext>
         </Router>
         
         <Header />

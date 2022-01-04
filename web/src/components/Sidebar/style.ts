@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 
 export const Container = styled.aside `
-    background-color:var(--blue-light);
+    background-color:var(--blue);
     grid-area: sidebar;
 `
+
+export const LogoImage = styled.img `
+  display:block;
+  width:3rem;
+  margin:3rem  auto 0 auto;
+` 
 export const Nav = styled.nav `
     padding:4rem 1rem;
     a {
@@ -16,7 +22,7 @@ export const Nav = styled.nav `
     li {
         color:#FFF;
         padding:1rem;
-        background-color:var(--blue);
+        background-color:var(--blue-light);
         border-radius:0.25rem;
         cursor:pointer;
         transition:filter .2s;

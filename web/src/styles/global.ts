@@ -12,6 +12,9 @@ export const GlobalStyle = createGlobalStyle `
 
         --shape:#FFF;
     }
+    #root {
+      overflow:hidden;
+    }
     ul {
         list-style:none ;
     }

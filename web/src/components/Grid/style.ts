@@ -7,4 +7,5 @@ export const Grid = styled.div `
     grid-template-areas: "sidebar header"
                          "sidebar main";
     grid-row:2 / 3;
+    height:100vh;
 ` 

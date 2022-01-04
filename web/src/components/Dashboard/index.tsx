@@ -1,5 +1,11 @@
+import { TransactionsPreview } from "./TransactionsPreview"
+import { Grid } from './style'
+
 export const Dashboard = () => {
     return (
-        <h1>Dashboard em construção...</h1>
+      /* Grid aqui */
+    <Grid>
+      <TransactionsPreview />
+    </Grid>
     )
 }

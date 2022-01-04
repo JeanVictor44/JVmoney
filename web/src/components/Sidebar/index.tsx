@@ -1,12 +1,16 @@
-import { Container, Nav } from "./style"
+import { Container, Nav, LogoImage } from "./style"
 import { Link } from "react-router-dom"
-import settingsImg from '../../assets/settings.png'
-import converterImg from '../../assets/converter.png'
 import dashboardrImg from '../../assets/dashboard.png'
+import transactionsImg from '../../assets/transactions.svg'
+import creditCardImg from '../../assets/credit-card.svg'
+import retirementsImg from '../../assets/retirements.svg'
+import cryptoImg from '../../assets/crypto.svg'
+import logoImg from '../../assets/logo.png'
 
 export const Sidebar = () => {
     return (
         <Container>
+          <LogoImage src={logoImg} alt="Logo" />
             <Nav>
                 <ul>
                   {/* Comece definindo os links para suas rotas */}
@@ -19,30 +23,30 @@ export const Sidebar = () => {
 
                         <Link to="/transacoes" >
                         <li>
-                            <img src={settingsImg} /> 
+                            <img src={transactionsImg} /> 
                             Transações
                         </li>
                       </Link>
 
                       <Link to="/cartao-de-credito" >
                         <li>
-                            <img src={settingsImg} /> 
+                            <img src={creditCardImg} /> 
                             Cartão de crédito
                         </li>
                       </Link> 
 
                       <Link to="/aposentadoria" >
                         <li>
-                            <img src={converterImg} />
+                            <img src={retirementsImg} />
                             Aposentadoria
                         </li>
                       </Link >
 
-                      <Link to="/configuracoes" >
+                      <Link to="/criptomoedas" >
                   
                         <li>
-                            <img src={settingsImg} /> 
-                            Configurações
+                            <img src={cryptoImg} /> 
+                            Criptomoedas
                         </li>
                       </Link>
                     

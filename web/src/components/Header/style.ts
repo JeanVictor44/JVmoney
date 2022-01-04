@@ -17,9 +17,7 @@ export const LogoContainer = styled.div `
     align-items:center;
     gap:15px;
 `
-export const LogoImage = styled.img `
 
-`
 export const LogoTitle = styled.h2 `
     color:var(--shape);
 `

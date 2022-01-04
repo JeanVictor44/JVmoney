@@ -28,7 +28,7 @@ export const Summary = () => {
       },0)
       setOutputSum(tranactionsOutputSum)
 
-      setTotal(inputSum - outputSum)
+      setTotal(tranactionsInputSum - tranactionsOutputSum)
 
     }, [transactions])
 

@@ -9,14 +9,13 @@ class TransactionController {
   }
   async create(req:Request, res:Response ) {
     try {
-      const { title, category, date, value, isOutput} = req.body
+      const { title, category, amount, type} = req.body
 
       const transaction = await TransactionModel.create({
         title,
-        value,
+        amount,
         category,
-        isOutput,
-        date,
+        type
         
       })
       res.status(201).json(transaction)

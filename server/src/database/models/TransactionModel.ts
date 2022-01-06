@@ -12,7 +12,7 @@ export const TransactionModel = db.define('transactions', {
     type:DataTypes.STRING,
     allowNull:false,
   },
-  value: {
+  amount: {
     type:DataTypes.FLOAT,  
     allowNull:false
   },
@@ -20,12 +20,8 @@ export const TransactionModel = db.define('transactions', {
     type: DataTypes.STRING,
     allowNull:false
   },
-  isOutput: {
-    type:DataTypes.BOOLEAN,
+  type: {
+    type:DataTypes.ENUM('deposit','withdrawn'),
     allowNull:false
   },
-  date: {
-    type: DataTypes.DATE,
-    allowNull:false
-  }
 })

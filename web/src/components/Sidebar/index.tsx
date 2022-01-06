@@ -13,7 +13,6 @@ export const Sidebar = () => {
           <LogoImage src={logoImg} alt="Logo" />
             <Nav>
                 <ul>
-                  {/* Comece definindo os links para suas rotas */}
                         <Link to="/dashboard" >
                         <li>
                             <img src={dashboardrImg} /> 

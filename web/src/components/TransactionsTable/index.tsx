@@ -1,15 +1,6 @@
-import { useEffect, useState, useContext} from "react"
+import {useContext} from "react"
 import { TransactionsContext } from "../../context/Transactions"
 import { Container } from "./style"
-
-type Transaction = {
-  id: number,
-  title: string,
-  value: number,
-  category: string,
-  isOutput:boolean
-  date: string
-}
 
 export const TransactionsTable = () => {
     const { transactions } = useContext(TransactionsContext)
@@ -31,7 +22,7 @@ export const TransactionsTable = () => {
                       transactions.length > 0 ?
                       transactions.map((transaction) => {
                         /* Format date */
-                        const date = new Date(transaction.date)
+                        const date = new Date(transaction.createdAt)
                         const day = (date.getDate().toString().padStart(2, '0')) 
                         const month = (date.getMonth() + 1).toString().padStart(2, '0')
                         const fullDate = `${day}/${month}/${date.getFullYear()}`
@@ -47,8 +38,8 @@ export const TransactionsTable = () => {
                               {transaction.title}
                             </td>
                             
-                            <td className={transaction.isOutput ? 'withdraw' : 'deposit'}>
-                              {transaction.value}
+                            <td className={transaction.type}>
+                              {transaction.amount}
                             </td>
                             
                             <td>

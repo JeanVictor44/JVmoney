@@ -1,15 +1,20 @@
-import logoImg from '../../assets/logo.png'
 import { Container, LogoContainer, LogoTitle, Content, ButtonTransaction} from './style'
 
-export const Header = () => {
-    return (
+interface HeaderProps {
+  onOpenNewTransactionModal:() => void
+}
+
+export const Header = ({onOpenNewTransactionModal}: HeaderProps) => {
+
+
+  return (
         <Container>
             <Content>
                 <LogoContainer>
                   <LogoTitle>JV Money</LogoTitle>
                 </LogoContainer>
                 
-                <ButtonTransaction type='button'>
+                <ButtonTransaction type='button' onClick={onOpenNewTransactionModal}>
                   Nova transação
                 </ButtonTransaction>
             </Content>

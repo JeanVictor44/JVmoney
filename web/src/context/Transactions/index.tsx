@@ -6,14 +6,17 @@ import {
   SetStateAction,
   ReactNode
 } from 'react'
+import { Api } from '../../services/api'
+
+type TransactionType = 'deposit' | 'withdrawn'
 
 export type Transaction = {
   id: number,
   title: string,
-  value: number,
+  amount: number,
   category: string,
-  isOutput:boolean
-  date: string
+  type: TransactionType,
+  createdAt: Date
 }
 
 type PropsTransactionContext = {
@@ -36,9 +39,12 @@ export const TransactionsContextProvider = ({children}:PropsTransactionsContextP
   const [ transactions, setTransactions ] = useState<Array<Transaction>>([])
 
     useEffect(() => {
-        fetch('http://localhost:3333/transactions')
-            .then(result => result.json())
-            .then(transactions => setTransactions(transactions))
+        const getTransactions = async() => {
+          const response = (await Api.get('transactions')).data
+          console.log(response)
+          setTransactions(response)
+        }
+        getTransactions()
     }, [])
 
   return (

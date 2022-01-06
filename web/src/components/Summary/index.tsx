@@ -5,30 +5,37 @@ import totalImg from '../../assets/total.svg'
 import { TransactionsContext } from '../../context/Transactions'
 import { useContext, useEffect, useState } from 'react'
 
-/*  precisa das propriedade do transactions -> value, isOutput */
-
 export const Summary = () => {
     const { transactions } = useContext(TransactionsContext)
     const [ inputSum, setInputSum ] = useState(0)
     const [ outputSum, setOutputSum ] = useState(0)
     const [ total, setTotal ] = useState(0)
 
-    useEffect(() => {
-      /* Calculate and set input sum */
-      const tranactionsInput = transactions.filter(transaction => !transaction.isOutput)
-      const tranactionsInputSum = tranactionsInput.reduce((acc, transaction) => {
-        return acc + transaction.value
+    const addInputTransaction = () => {
+      const tranactionsInput = transactions.filter(transaction => transaction.type === 'deposit')
+      const sumInputTransaction = tranactionsInput.reduce((acc, transaction) => {
+        return acc + transaction.amount
       },0)
-      setInputSum(tranactionsInputSum)
+      return sumInputTransaction
       
-      /* Calculate and set output sum*/
-      const tranactionsOutput = transactions.filter(transaction => transaction.isOutput)
-      const tranactionsOutputSum = tranactionsOutput.reduce((acc, transaction) => {
-        return acc + transaction.value
-      },0)
-      setOutputSum(tranactionsOutputSum)
+    }
+    const addOutputTransaction = () => {
+       /* Calculate and set output sum*/
+       const tranactionsOutput = transactions.filter(transaction => transaction.type === 'withdrawn')
+       const sumOutputTransaction = tranactionsOutput.reduce((acc, transaction) => {
+         return acc + transaction.amount
+       },0)
+       return sumOutputTransaction
+    }
+    
+    useEffect(() => {
+      const sumInputTransaction = addInputTransaction()
+      const sumOutputTransaction = addOutputTransaction()
 
-      setTotal(tranactionsInputSum - tranactionsOutputSum)
+      setInputSum(sumInputTransaction)
+      setOutputSum(sumOutputTransaction)
+
+      setTotal(sumInputTransaction - sumOutputTransaction)
 
     }, [transactions])
 

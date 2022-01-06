@@ -36,12 +36,11 @@ interface PropsTransactionsContextProvider {
 } 
 
 export const TransactionsContextProvider = ({children}:PropsTransactionsContextProvider ) => {
-  const [ transactions, setTransactions ] = useState<Array<Transaction>>([])
+  const [ transactions, setTransactions ] = useState<Transaction[]>([])
 
     useEffect(() => {
         const getTransactions = async() => {
           const response = (await Api.get('transactions')).data
-          console.log(response)
           setTransactions(response)
         }
         getTransactions()

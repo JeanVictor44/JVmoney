@@ -29,10 +29,10 @@ export function App() {
           <Sidebar />
           <GlobalContext>
             <Routes />
+            <NewTransactionModal isOpen={isNewTransactionModalOpen} onRequestClose={handleCloseNewTransactionModal}/>
           </GlobalContext>
         </Router>
         <Header onOpenNewTransactionModal={handleOpenNewTransactionModal}/>
-        <NewTransactionModal isOpen={isNewTransactionModalOpen} onRequestClose={handleCloseNewTransactionModal}/>
         
       </Grid>
     </>

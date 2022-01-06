@@ -1,9 +1,16 @@
 import {useContext} from "react"
 import { TransactionsContext } from "../../context/Transactions"
 import { Container } from "./style"
+import trashImg from '../../assets/trash.svg'
+import { Api } from "../../services/api"
 
 export const TransactionsTable = () => {
-    const { transactions } = useContext(TransactionsContext)
+    const { transactions, setTransactions} = useContext(TransactionsContext)
+    
+    const handleDeleteTrasaction = (id: number) => {
+      Api.delete(`/transactions/${id}`)
+      setTransactions((allTransactions) => allTransactions.filter((transaction) => transaction.id != id ))
+    }
 
     return (
         <Container>
@@ -33,7 +40,7 @@ export const TransactionsTable = () => {
                         }).join(' ')
 
                         return ( 
-                          <tr> 
+                          <tr key={transaction.id}> 
                             <td>
                               {transaction.title}
                             </td>
@@ -52,6 +59,11 @@ export const TransactionsTable = () => {
                               {
                                fullDate
                               }
+                            </td>
+                            <td>
+                              <button onClick={() => handleDeleteTrasaction(transaction.id)}>
+                                <img src={trashImg} alt="excluir transação" />
+                              </button>
                             </td>
                           </tr>
   

@@ -14,7 +14,7 @@ interface NewTransactionModalProps {
 
 Modal.setAppElement('#root')
 export const NewTransactionModal = ({isOpen, onRequestClose}:NewTransactionModalProps ) => {
-  const { setTransactions } = useContext(TransactionsContext)
+  const { setTransactions, transactions} = useContext(TransactionsContext)
 
   const [ type, setType ] = useState('deposit')
   const [ title, setTitle ] = useState('')
@@ -35,7 +35,9 @@ export const NewTransactionModal = ({isOpen, onRequestClose}:NewTransactionModal
       category,
       type
     }) ).data
-    setTransactions((oldTransactions) => [...oldTransactions, newTransaction])
+    console.log(transactions)
+    setTransactions((oldTransactions) =>  [...oldTransactions, newTransaction])
+    console.log(transactions)
     handleResetInputs()
   }
   return (
@@ -57,6 +59,7 @@ export const NewTransactionModal = ({isOpen, onRequestClose}:NewTransactionModal
         <h2>Cadastrar Transação</h2>
         <input type='text' placeholder='Título' value={title} onChange={(event) => setTitle(event.target.value)}/> 
         <input type='number' placeholder='Valor' value={value} onChange={(event) => setValue(Number(event.target.value))}/>
+        
         <TransctionTypeContainer>
           <RadioBox 
             type="button"

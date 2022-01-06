@@ -36,7 +36,7 @@ export const Summary = () => {
       setOutputSum(sumOutputTransaction)
 
       setTotal(sumInputTransaction - sumOutputTransaction)
-
+      console.log('Transaction alterado')
     }, [transactions])
 
     return (
@@ -63,7 +63,9 @@ export const Summary = () => {
                     <img src={totalImg} alt='Total' />
                 </header>
                 <strong>
-                  ${total}
+                  {
+                    total < 0 ? `- $${Math.abs(total)}` : `$${total}`
+                  }
                 </strong>
             </Card>
         </Container>

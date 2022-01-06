@@ -23,12 +23,43 @@ export const Container = styled.div `
             &.withdrawn {
                 color:var(--red);
             }
+            
+            &:last-child {
+              button {
+                img {
+                  width:1.2rem;
+                  visibility:hidden;
+                }
+                border:0;
+                background:transparent;
+                cursor:pointer;
+                
+                
+              }
+
+            } 
+
         }
+
         tbody {
             tr {
                 background-color:var(--shape);
+                transition: background-color 0.2s ease-in;
+
+                &:hover {
+                  background-color:var(--blue);
+                  td:not(:nth-child(2)){
+                    color:#fff;
+                  }
+
+                }
+
+                &:hover td:last-child img {
+                  visibility:visible;
+                }  
             }
             
         }
+
     }
 `

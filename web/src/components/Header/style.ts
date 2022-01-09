@@ -21,7 +21,7 @@ export const LogoContainer = styled.div `
 export const LogoTitle = styled.h2 `
     color:var(--shape);
 `
-export const ButtonTransaction = styled.button `
+export const Button = styled.button `
     font-size:1rem;
     background-color:var(--blue-light);
     border:0;

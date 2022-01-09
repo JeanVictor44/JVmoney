@@ -6,15 +6,14 @@ import outcomeImg from '../../assets/outcome.svg'
 import { FormEvent, useContext, useState } from 'react'
 import { Api } from '../../services/api'
 import { Transaction, TransactionsContext } from '../../context/Transactions'
+import { NewTransactionModalContext } from '../../context/NewTransactionModal'
 
-interface NewTransactionModalProps {
-  isOpen:boolean;
-  onRequestClose:() => void;
-}
 
 Modal.setAppElement('#root')
-export const NewTransactionModal = ({isOpen, onRequestClose}:NewTransactionModalProps ) => {
-  const { setTransactions, transactions} = useContext(TransactionsContext)
+export const NewTransactionModal = () => {
+  const { setTransactions } = useContext(TransactionsContext)
+  const { handleCloseNewTransactionModal: onRequestClose, isNewTransactionModalOpen: isOpen} = useContext(NewTransactionModalContext)
+
 
   const [ type, setType ] = useState('deposit')
   const [ title, setTitle ] = useState('')
@@ -27,6 +26,7 @@ export const NewTransactionModal = ({isOpen, onRequestClose}:NewTransactionModal
     setValue(0)
     setCategory('')
   }
+
   const handleCreateNewTransaction = async (event: FormEvent) => {
     event.preventDefault()
     const newTransaction:Transaction = (await Api.post('/transactions', {
@@ -35,11 +35,11 @@ export const NewTransactionModal = ({isOpen, onRequestClose}:NewTransactionModal
       category,
       type
     }) ).data
-    console.log(transactions)
+    
     setTransactions((oldTransactions) =>  [...oldTransactions, newTransaction])
-    console.log(transactions)
     handleResetInputs()
   }
+
   return (
     <Modal
       isOpen={isOpen}

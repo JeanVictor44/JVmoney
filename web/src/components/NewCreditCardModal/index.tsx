@@ -2,18 +2,42 @@ import Modal from 'react-modal'
 import CreditCard, { Focused } from 'react-credit-cards'
 import { Container, ContainerLastInputs } from './style'
 import { NewCreditCardModalContext } from '../../context/NewCreditCardModal'
-import { useContext, useState } from 'react'
+import { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import closeImg from '../../assets/close.svg'
-
+import { Api } from '../../services/api'
+import { CreditCardsContext } from '../../context/CreditCards'
 
 export const NewCreditCardModal = () => {
-  const { handleCloseNewCreditCardModal: onRequestClose, isNewCreditCardModalOpen: isOpen} = useContext(NewCreditCardModalContext)
+  const { handleCloseNewCreditCardModal: onRequestClose, isNewCreditCardModalOpen: isOpen, } = useContext(NewCreditCardModalContext)
+  const { setCreditCards } = useContext(CreditCardsContext)
   const [ cvc, setCvc] = useState('')
   const [ number, setNumber ] = useState('')
   const [ expiry, setExpiry ] = useState('')
   const [ name, setName ] = useState('')
   const [ focus, setFocus ] = useState<Focused>('number')
+  
+  const handleCreateNewCreditCard = async(event: FormEvent) => {
+    event.preventDefault()
+    const newCreditCard = (await Api.post('/credit-cards', {
+      number,
+      name,
+      cvc,
+      expiry
+    })).data
+    setCreditCards((oldCreditCards) =>  [...oldCreditCards, newCreditCard])
 
+
+  }
+
+  const handleChangeNumberInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const maxLenghtInputNumber = 16
+    const newValue = event.target.value
+    const isUserDeletingANumber = newValue.length < number.length
+
+    if(number.length < maxLenghtInputNumber || isUserDeletingANumber){
+      setNumber(newValue)
+    }
+  }
 
   return (
     <Modal
@@ -23,7 +47,7 @@ export const NewCreditCardModal = () => {
       overlayClassName='react-modal-overlay'
       className='react-modal-content'
     >
-      <Container>
+      <Container onSubmit={handleCreateNewCreditCard}>
         <button 
           type='button' 
           onClick={onRequestClose}
@@ -44,40 +68,51 @@ export const NewCreditCardModal = () => {
         />
 
         <input 
-          type="tel" 
-          maxLength={16} 
+          type="number" 
+          value={number}
           placeholder="Número" 
-          onChange={(event) => setNumber(event.target.value)} 
+          onChange={handleChangeNumberInput} 
           onFocus={() => setFocus('number')}
+          required
           />
 
         <input 
-          type="text" 
+          type="text"
+          value={name}
           placeholder="Nome" 
           onChange={(event) => setName(event.target.value)} 
           onFocus={() => setFocus('name')}
+          required
           />
         <ContainerLastInputs>
           <input 
             type="text" 
+            value={expiry}
             placeholder="Data de Expiração" 
             minLength={4}
             maxLength={4}
             onChange={(event) => setExpiry(event.target.value)} 
             onFocus={() => setFocus('expiry')}
+            required
           />
           
           <input 
             type="text" 
+            value={cvc}
             placeholder="CVC" 
             minLength={3} 
             maxLength={3} 
             onChange={(event) => setCvc(event.target.value) } 
             onFocus={() => setFocus('cvc')}
+            required
           />
         </ContainerLastInputs>
         
-        <button type='submit' >Cadastrar</button>
+        <button 
+          type='submit'
+        >
+          Cadastrar
+        </button>
       </Container>
     </Modal>
   )

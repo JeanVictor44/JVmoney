@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { TransactionsContextProvider } from "./Transactions"
+import { CreditCardsContextProvider } from "./CreditCards"
 import { NewTransactionModalContextProvider} from './NewTransactionModal'
 import { NewCreditCardModalContextProvider } from "./NewCreditCardModal"
 
@@ -12,7 +13,9 @@ export const GlobalContext = ({children}: PropsGlobalContext) => {
     <TransactionsContextProvider>
       <NewTransactionModalContextProvider>
         <NewCreditCardModalContextProvider>
-          {children}
+          <CreditCardsContextProvider>
+            {children}
+          </CreditCardsContextProvider>
         </NewCreditCardModalContextProvider>
       </NewTransactionModalContextProvider>
     </TransactionsContextProvider>

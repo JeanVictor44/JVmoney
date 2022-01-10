@@ -34,10 +34,10 @@ export const TransactionsTable = () => {
                         const month = (date.getMonth() + 1).toString().padStart(2, '0')
                         const fullDate = `${day}/${month}/${date.getFullYear()}`
                         
-                        /* Format category: Capitalize */
+                       /*  
                         const categoryFormated = transaction.category.split(' ').map((word) => {
                           return `${word[0].toLocaleUpperCase()}${word.slice(1)}`
-                        }).join(' ')
+                        }).join(' ') */
 
                         return ( 
                           <tr key={transaction.id}> 
@@ -51,7 +51,7 @@ export const TransactionsTable = () => {
                             
                             <td>
                               {
-                                categoryFormated
+                                transaction.category
                               }
                             </td>
                             

@@ -1,58 +1,12 @@
 import { Container, GridCards} from "./style"
 import Card from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css';
+import { CreditCardsContext } from "../../context/CreditCards";
+import { useContext } from "react";
 
-interface CreditCard {
-  name: string
-  number:string | number
-  expiry: string | number
-  cvc:string | number
-}
-
-interface PropsCreditCard {
-  creditCards?:CreditCard[]
-}
-
-export const CreditCards = ({creditCards}:PropsCreditCard) => {
-  creditCards = creditCards ? creditCards : [
-    {
-      name:'Fulano de ciclano',
-      number:'555555555555',
-      expiry:'02/25',
-      cvc:'024' 
-    },
-    {
-      name:'Fulano de ciclano',
-      number:'555555555555',
-      expiry:'02/25',
-      cvc:'024' 
-    },
-    {
-      name:'Fulano de ciclano',
-      number:'555555555555',
-      expiry:'02/25',
-      cvc:'024' 
-    },
-    {
-      name:'Fulano de ciclano',
-      number:'555555555555',
-      expiry:'02/25',
-      cvc:'024' 
-    },
-    {
-      name:'Fulano de ciclano',
-      number:'555555555555',
-      expiry:'02/25',
-      cvc:'024' 
-    },
-    {
-      name:'Fulano de ciclano',
-      number:'555555555555',
-      expiry:'02/25',
-      cvc:'024' 
-    }
-  ]
-
+export const CreditCards = () => {
+  const { creditCards } = useContext(CreditCardsContext)
+  
   return (
     <Container>
       <h1>Seus cartões</h1>

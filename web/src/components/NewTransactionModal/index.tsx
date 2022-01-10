@@ -14,7 +14,6 @@ export const NewTransactionModal = () => {
   const { setTransactions } = useContext(TransactionsContext)
   const { handleCloseNewTransactionModal: onRequestClose, isNewTransactionModalOpen: isOpen} = useContext(NewTransactionModalContext)
 
-
   const [ type, setType ] = useState('deposit')
   const [ title, setTitle ] = useState('')
   const [ value, setValue ] = useState(0)
@@ -57,8 +56,19 @@ export const NewTransactionModal = () => {
         </button>
 
         <h2>Cadastrar Transação</h2>
-        <input type='text' placeholder='Título' value={title} onChange={(event) => setTitle(event.target.value)}/> 
-        <input type='number' placeholder='Valor' value={value} onChange={(event) => setValue(Number(event.target.value))}/>
+        
+        <input 
+          type='text' 
+          placeholder='Título' 
+          value={title} 
+          onChange={(event) => setTitle(event.target.value)}
+        /> 
+        
+        <input 
+          type='number' 
+          placeholder='Valor' 
+          value={value} onChange={(event) => setValue(Number(event.target.value))}
+        />
         
         <TransctionTypeContainer>
           <RadioBox 
@@ -82,7 +92,11 @@ export const NewTransactionModal = () => {
           </RadioBox>
         </TransctionTypeContainer>
 
-        <input type='text' placeholder='Categoria' value={category} onChange={(event) => setCategory(event.target.value)}/>
+        <input 
+          type='text' placeholder='Categoria' 
+          value={category} onChange={(event) => setCategory(event.target.value)}
+        />
+
         <button type='submit' >Cadastrar</button>
       </Container>
     </Modal>

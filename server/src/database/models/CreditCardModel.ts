@@ -9,14 +9,11 @@ export const CreditCardModel = db.define('creditCards', {
     allowNull:false
   },
   number: {
-    type:DataTypes.INTEGER,
+    type:DataTypes.STRING,
     allowNull:false
   },
   cvc: {
-    type: DataTypes.INTEGER({
-      length:3,
-      unsigned:true
-    }),
+    type: DataTypes.STRING(3),
     allowNull:false
   },
   name: {
@@ -24,7 +21,7 @@ export const CreditCardModel = db.define('creditCards', {
     allowNull:false
   },
   expiry: {
-    type:DataTypes.INTEGER,
+    type:DataTypes.STRING,
     allowNull:false
-  }
+  } 
 })

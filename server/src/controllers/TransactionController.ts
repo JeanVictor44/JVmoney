@@ -5,7 +5,7 @@ class TransactionController {
   
   async findAll( req:Request, res:Response ) {
     const transactions = await TransactionModel.findAll()
-    res.status(200).json(transactions)
+    return res.status(200).json(transactions)
   }
 
   async create(req:Request, res:Response ) {
@@ -19,9 +19,9 @@ class TransactionController {
         type
         
       })
-      res.status(201).json(transaction)
+      return res.status(201).json(transaction)
     }catch(err){
-      console.log(err) 
+      throw new Error(err) 
     }
     
   }
@@ -30,10 +30,10 @@ class TransactionController {
     const id = req.params.id
     const transacionDestroyed = await TransactionModel.destroy({
       where:{
-        id:id
+        id
       }
     })
-    res.status(204).json(transacionDestroyed)
+    return res.status(204).json(transacionDestroyed)
 
   }
   

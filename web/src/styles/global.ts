@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle `
         --text-body:#969CB3;
         --shape:#FFF;
     }
+    
     #root {
       overflow:hidden;
     }
@@ -36,6 +37,7 @@ export const GlobalStyle = createGlobalStyle `
     body {
         background:var(--background);
         font-family: 'Roboto', sans-serif;    
+        user-select:none;
     }
     
     button {

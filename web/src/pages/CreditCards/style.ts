@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.section `
   padding:2.5rem;
   overflow:scroll;
+  h1 {
+    color:var(--text-title)
+  }
 ` 
 export const GridCards = styled.div `
   display:grid;

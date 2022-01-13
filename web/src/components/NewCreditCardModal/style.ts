@@ -4,6 +4,7 @@ export const Container = styled.form `
   h2 {
     margin-bottom:2rem;
     font-size:1.5rem;
+    color:var(--text-title);
   }
   input {
     background:#E7E9EE;

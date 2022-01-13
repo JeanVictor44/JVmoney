@@ -46,7 +46,12 @@ export const Summary = () => {
                     <p >Entradas</p>
                     <img src={incomeImg} alt='Entradas' />
                 </header>
-                <strong className='input-color'>${inputSum}</strong>
+                <strong className='input-color'>
+                  {new Intl.NumberFormat('pt-br', {
+                    style:'currency',
+                    currency:'BRL'
+                  }).format(inputSum)}
+                </strong>
             </Card>
 
             <Card>
@@ -54,7 +59,12 @@ export const Summary = () => {
                     <p >Saídas</p>
                     <img src={outcomeImg} alt='Saídas' />
                 </header>
-                <strong className='output-color'>- ${outputSum}</strong>
+                <strong className='output-color'>
+                  - {new Intl.NumberFormat('pt-br', {
+                    style:'currency',
+                    currency:'BRL'
+                  }).format(outputSum)}
+                </strong>
             </Card>
 
             <Card className='highlitght-background'>
@@ -64,7 +74,10 @@ export const Summary = () => {
                 </header>
                 <strong>
                   {
-                    total < 0 ? `- $${Math.abs(total)}` : `$${total}`
+                    new Intl.NumberFormat('pt-br', {
+                      style:'currency',
+                      currency:'BRL'
+                    }).format(total)
                   }
                 </strong>
             </Card>

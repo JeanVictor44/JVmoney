@@ -28,17 +28,6 @@ export const TransactionsTable = () => {
                     {
                       transactions.length > 0 ?
                       transactions.map((transaction) => {
-                        /* Format date */
-                        const date = new Date(transaction.createdAt)
-                        const day = (date.getDate().toString().padStart(2, '0')) 
-                        const month = (date.getMonth() + 1).toString().padStart(2, '0')
-                        const fullDate = `${day}/${month}/${date.getFullYear()}`
-                        
-                       /*  
-                        const categoryFormated = transaction.category.split(' ').map((word) => {
-                          return `${word[0].toLocaleUpperCase()}${word.slice(1)}`
-                        }).join(' ') */
-
                         return ( 
                           <tr key={transaction.id}> 
                             <td>
@@ -46,7 +35,10 @@ export const TransactionsTable = () => {
                             </td>
                             
                             <td className={transaction.type}>
-                              {transaction.amount}
+                              {new Intl.NumberFormat('pt-br', {
+                                style:'currency',
+                                currency:'BRl'
+                              }).format(transaction.amount)}
                             </td>
                             
                             <td>
@@ -57,7 +49,7 @@ export const TransactionsTable = () => {
                             
                             <td>
                               {
-                               fullDate
+                               new Intl.DateTimeFormat('pt-br').format(new Date(transaction.createdAt))
                               }
                             </td>
                             <td>

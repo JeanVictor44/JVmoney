@@ -34,7 +34,7 @@ export const Sidebar = () => {
                         </li>
                       </Link> 
 
-                      <Link to="/aposentadoria" >
+                      <Link to="/Lições" >
                         <li>
                             <img src={retirementsImg} />
                             Aposentadoria
